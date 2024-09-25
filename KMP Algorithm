@@ -1,0 +1,29 @@
+#Kmp Algorithm 
+def computeLPSArray(P):
+    m = len(P)
+    LPS = [0] * m
+    j = 0  # length of the previous longest prefix suffix
+
+    for i in range(1, m):
+        match = False  # flag bit to indicate if a match is found
+        print(f"Comparing P[{i}] = {P[i]} with P[{j}] = {P[j] if j < m else 'N/A'}")
+        
+        while j > 0 and P[i] != P[j]:
+            print(f"Mismatch: P[{i}] = {P[i]} != P[{j}] = {P[j]}")
+            j = LPS[j - 1]
+            print(f"Set j to LPS[{j}] = {LPS[j]}")
+        
+        if P[i] == P[j]:
+            j += 1
+            match = True  # set flag bit to True if a match is found
+            print(f"Match: P[{i}] = {P[i]} == P[{j-1}] = {P[j-1]}")
+        
+        LPS[i] = j if match else 0
+        print(f"LPS[{i}] = {LPS[i]}\n")
+
+    return LPS
+
+# Example usage
+P = "ONIONS"
+LPS = computeLPSArray(P)
+print("Final LPS array:", LPS)  # Output: [0, 0, 0, 1, 2, 0]
