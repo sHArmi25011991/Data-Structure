@@ -1,0 +1,37 @@
+import random
+
+def binary_search(data, lb, ub, item):
+    beg = lb
+    end = ub
+    loc = None
+    
+    while beg <= end:
+        mid = (beg + end) // 2
+        if data[mid] == item:
+            loc = mid
+            break
+        elif item < data[mid]:
+            end = mid - 1
+        else:
+            beg = mid + 1
+    
+    return loc
+
+
+data = sorted(random.sample(range(1, 100), 10))
+print(f"Random sorted array: {data}")
+
+
+item = random.choice(data)
+print(f"Item to search for: {item}")
+
+
+lb = 0
+ub = len(data) - 1
+location = binary_search(data, lb, ub, item)
+
+
+if location is not None:
+    print(f"Item {item} found at index: {location}")
+else:
+    print(f"Item {item} not found in the array.")
