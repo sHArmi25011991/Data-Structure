@@ -1,0 +1,30 @@
+def binary_search(data, lb, ub, item):
+    beg = lb
+    end = ub
+    loc = None
+    
+    while beg <= end:
+        mid = (beg + end) // 2
+        if data[mid] == item:
+            loc = mid
+            break
+        elif item < data[mid]:
+            end = mid - 1
+        else:
+            beg = mid + 1
+    
+    return loc
+
+# Example usage:
+data = list(map(int, input("Enter numbers separated by spaces: ").split()))
+user_input = input("Enter a number: ")
+try:
+    item = int(user_input)
+    print(f"The integer value is: {item}")
+except ValueError:
+    print("Please enter a valid number.")
+
+lb = 0
+ub = len(data) - 1
+location = binary_search(data, lb, ub, item)
+print(f"Item {item} found at index: {location}")
