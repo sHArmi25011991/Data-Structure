@@ -38,7 +38,7 @@ void dequeue(int N) {
     }
 }
 
-void display() {
+void display(int N) {
     if (front == -1) {
         printf("Queue is empty\n");
         return;
@@ -71,7 +71,7 @@ int main() {
         } else if (choice == 2) {
             dequeue(N);
         }
-        display();
+        display(N);
     }
     free(queue);
     return 0;
